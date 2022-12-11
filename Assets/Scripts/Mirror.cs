@@ -6,11 +6,12 @@ using UnityEngine.Assertions;
 using UnityEngine.EventSystems;
 
 [RequireComponent(typeof(BoxCollider2D))]
-public class Mirror : MonoBehaviour, IBeginDragHandler, IDragHandler
+public class Mirror : MonoBehaviour, IBeginDragHandler, IDragHandler, IPointerClickHandler
 {
     private static readonly List<Mirror> ActiveMirrors = new();
 
     [SerializeField] private new BoxCollider2D collider;
+    private readonly List<Collider2D> _overlappingColliders = new();
 
     private Vector3 _dragOffset;
 
@@ -38,6 +39,19 @@ public class Mirror : MonoBehaviour, IBeginDragHandler, IDragHandler
         transform.position = _dragOffset + mousePos;
     }
 
+    public void OnPointerClick(PointerEventData eventData)
+    {
+        if (eventData.button != PointerEventData.InputButton.Right) return;
+
+        _overlappingColliders.Clear();
+        collider.OverlapCollider(new ContactFilter2D { useTriggers = true }, _overlappingColliders);
+
+        if (_overlappingColliders.Any(r => r.GetComponent<PlayerMovement>() is not null))
+            PlayCantCloseAnimation();
+        else
+            Kill(_overlappingColliders.Select(c => c.GetComponent<Reflection>()).Where(r => r is not null));
+    }
+
     private static Vector3 MousePosition2D(PointerEventData eventData)
     {
         var pos = CameraCache.Main.ScreenToWorldPoint(eventData.position);
@@ -54,6 +68,19 @@ public class Mirror : MonoBehaviour, IBeginDragHandler, IDragHandler
         return
             min.x <= point.x && point.x <= max.x &&
             min.y <= point.y && point.y <= max.y;
+    }
+
+    private void PlayCantCloseAnimation()
+    {
+        Debug.Log("err");
+    }
+
+    private void Kill(IEnumerable<Reflection> reflectionsToKill)
+    {
+        foreach (var reflection in reflectionsToKill) reflection.Kill();
+
+        Debug.Log("destroying");
+        Destroy(gameObject);
     }
 
     public static bool AnyContain(Reflection reflection)
