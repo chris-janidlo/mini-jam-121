@@ -30,24 +30,17 @@ public class Mirror : MonoBehaviour, IBeginDragHandler, IDragHandler
     {
         var mousePos = MousePosition2D(eventData);
         _dragOffset = transform.position - mousePos;
-        Debug.Log("begin");
-        Debug.Log(mousePos);
-        Debug.Log(_dragOffset);
     }
 
     public void OnDrag(PointerEventData eventData)
     {
         var mousePos = MousePosition2D(eventData);
         transform.position = _dragOffset + mousePos;
-        Debug.Log("drag");
-        Debug.Log(mousePos);
-        Debug.Log(_dragOffset);
     }
 
     private static Vector3 MousePosition2D(PointerEventData eventData)
     {
         var pos = CameraCache.Main.ScreenToWorldPoint(eventData.position);
-        Debug.Log(CameraCache.Main);
         pos.z = 0;
         return pos;
     }
