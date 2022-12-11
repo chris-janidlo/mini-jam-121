@@ -1,3 +1,4 @@
+using UnityAtoms.BaseAtoms;
 using UnityEngine;
 using UnityEngine.Assertions;
 
@@ -5,6 +6,7 @@ public class PlayerMovement : MonoBehaviour
 {
     [SerializeField] private float speed;
     [SerializeField] private new Rigidbody2D rigidbody2D;
+    [SerializeField] private Vector2Variable playerPosition;
 
     private Vector2 _input;
 
@@ -24,5 +26,6 @@ public class PlayerMovement : MonoBehaviour
     private void FixedUpdate()
     {
         rigidbody2D.velocity = _input * speed;
+        playerPosition.Value = rigidbody2D.position;
     }
 }
