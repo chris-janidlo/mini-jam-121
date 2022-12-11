@@ -138,9 +138,20 @@ MonoBehaviour:
   floatAmplitude: 0.03125
   floatPeriod: 10
   rigidbody2D: {fileID: 3437266702586017816}
+  playerPosition: {fileID: 11400000, guid: 6e590ef5b89bb5540870a7f450b11e6b, type: 2}
   cloudTransform: {fileID: 99353516048229207}
   reflectionTransform: {fileID: 702267275044469834}
-  playerPosition: {fileID: 11400000, guid: 6e590ef5b89bb5540870a7f450b11e6b, type: 2}
+  shadow: {fileID: 3437266701696586129}
+  cloudAnimator: {fileID: 7674417944339008850}
+  reflectionAnimator: {fileID: 1646032052950842619}
+  deathAnimationStateName: Death
+  gameOverSceneLoadDelay: 2
+  gameOver:
+    _sceneAsset: {fileID: 102900000, guid: 64e08a2dcafaf0444bd48ba0603f6b55, type: 3}
+    _sceneName: Game Over
+    _scenePath: Assets/Scenes/Game Over.unity
+    _buildIndex: 2
+  playerDying: {fileID: 11400000, guid: 4acd91f4ae55fd247a4a4b4a283c8b94, type: 2}
 --- !u!114 &3437266702586017822
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -283,6 +294,12 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 3437266702343229866}
   m_PrefabAsset: {fileID: 0}
+--- !u!95 &1646032052950842619 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 4135569673325964625, guid: 4eca05cdfeabfe34e9ee47d589662617,
+    type: 3}
+  m_PrefabInstance: {fileID: 3437266702343229866}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &3437266702858168532
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -366,6 +383,12 @@ PrefabInstance:
 --- !u!4 &99353516048229207 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3374153407926242179, guid: c6ca9db4a643bdf43a209596f5e3ded0,
+    type: 3}
+  m_PrefabInstance: {fileID: 3437266702858168532}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &7674417944339008850 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: -4237150922576861818, guid: c6ca9db4a643bdf43a209596f5e3ded0,
     type: 3}
   m_PrefabInstance: {fileID: 3437266702858168532}
   m_PrefabAsset: {fileID: 0}

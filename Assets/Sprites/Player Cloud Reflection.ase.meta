@@ -15,5 +15,5 @@ ScriptedImporter:
   sortingLayerName: 
   sortingOrder: 0
   animatorCullingMode: 0
-  animatorController: {instanceID: 0}
+  animatorController: {fileID: 9100000, guid: ae6ca4f9f6652c34ea120d80e7b134fe, type: 2}
   errors: []

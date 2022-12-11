@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 6927615761634059493}
   - component: {fileID: 5494262576355577438}
   - component: {fileID: 8010992679090681527}
+  - component: {fileID: 4390733709268701257}
   m_Layer: 0
   m_Name: Basic Enemy
   m_TagString: Untagged
@@ -54,9 +55,8 @@ MonoBehaviour:
       m_Calls: []
   followSpeed: 2
   rigidbody2D: {fileID: 5494262576355577438}
-  playerPosition: {fileID: 11400000, guid: 6e590ef5b89bb5540870a7f450b11e6b, type: 2}
-  gameOver: {fileID: 6927615761634059493}
   reflection: {fileID: 5494262576355577424}
+  playerPosition: {fileID: 11400000, guid: 6e590ef5b89bb5540870a7f450b11e6b, type: 2}
   killCount: {fileID: 11400000, guid: 2672a224ff12b2f4badebddb15608899, type: 2}
 --- !u!114 &5494262576355577424
 MonoBehaviour:
@@ -104,7 +104,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 0
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
@@ -126,6 +126,44 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.25
+--- !u!114 &4390733709268701257
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5494262576355577437}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6ab7cbc45164d19b20476265c251c2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _developerDescription: 
+  _unityEventResponse:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 5494262576355577425}
+        m_TargetAssemblyTypeName: Enemy, Assembly-CSharp
+        m_MethodName: OnPlayerDyingChanged
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  _actionResponses: []
+  _conditions: []
+  _operator: 0
+  _replayEventBufferOnRegister: 1
+  _eventReference:
+    _usage: 0
+    _event: {fileID: 11400000, guid: a3ef5ad3a37b9d748b2a8ee151f1b1c5, type: 2}
+    _eventInstancer: {fileID: 0}
+    _variable: {fileID: 0}
+    _variableInstancer: {fileID: 0}
 --- !u!1001 &1757376659521371456
 PrefabInstance:
   m_ObjectHideFlags: 0

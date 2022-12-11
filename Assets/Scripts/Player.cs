@@ -1,6 +1,9 @@
+using System.Collections;
 using UnityAtoms.BaseAtoms;
+using UnityAtoms.SceneMgmt;
 using UnityEngine;
 using UnityEngine.Assertions;
+using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour
 {
@@ -8,8 +11,14 @@ public class Player : MonoBehaviour
     [SerializeField] private float floatAmplitude, floatPeriod;
 
     [SerializeField] private new Rigidbody2D rigidbody2D;
-    [SerializeField] private Transform cloudTransform, reflectionTransform;
     [SerializeField] private Vector2Variable playerPosition;
+    [SerializeField] private Transform cloudTransform, reflectionTransform;
+    [SerializeField] private GameObject shadow;
+    [SerializeField] private Animator cloudAnimator, reflectionAnimator;
+    [SerializeField] private string deathAnimationStateName;
+    [SerializeField] private float gameOverSceneLoadDelay;
+    [SerializeField] private SceneField gameOver;
+    [SerializeField] private BoolVariable playerDying;
 
     private Vector2 _cloudLocalStartPosition, _reflectionLocalStartPosition;
     private Vector2 _input;
@@ -17,6 +26,8 @@ public class Player : MonoBehaviour
     private void Start()
     {
         Assert.IsTrue(rigidbody2D.isKinematic);
+
+        playerDying.Value = false;
 
         _cloudLocalStartPosition = cloudTransform.localPosition;
         _reflectionLocalStartPosition = reflectionTransform.localPosition;
@@ -30,8 +41,28 @@ public class Player : MonoBehaviour
 
     private void FixedUpdate()
     {
+        if (playerDying.Value) return;
+
         rigidbody2D.velocity = _input * speed;
         playerPosition.Value = rigidbody2D.position;
+    }
+
+    public void Kill()
+    {
+        IEnumerator DeathRoutine()
+        {
+            playerDying.Value = true;
+
+            cloudAnimator.Play(deathAnimationStateName);
+            reflectionAnimator.Play(deathAnimationStateName);
+            Destroy(shadow);
+
+            yield return new WaitForSeconds(gameOverSceneLoadDelay);
+
+            SceneManager.LoadScene(gameOver);
+        }
+
+        StartCoroutine(DeathRoutine());
     }
 
     private void ReadInput()

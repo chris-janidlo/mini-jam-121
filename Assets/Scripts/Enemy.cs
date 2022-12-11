@@ -7,11 +7,12 @@ public class Enemy : MonoBehaviour
     public UnityEvent onDeath;
 
     [SerializeField] private float followSpeed;
-    [SerializeField] private new Rigidbody2D rigidbody2D;
-    [SerializeField] private Vector2Variable playerPosition;
-    [SerializeField] private SceneLoader gameOver;
-    [SerializeField] private Reflection reflection;
 
+    [Header("References")] [SerializeField]
+    private new Rigidbody2D rigidbody2D;
+
+    [SerializeField] private Reflection reflection;
+    [SerializeField] private Vector2Variable playerPosition;
     [SerializeField] private IntVariable killCount;
 
     public float ReflectionRadius => reflection.Radius;
@@ -23,7 +24,19 @@ public class Enemy : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag(Constants.PLAYER_TAG)) gameOver.Load();
+        if (!other.CompareTag(Constants.PLAYER_TAG)) return;
+
+        other.GetComponent<Player>()!.Kill();
+    }
+
+    public void OnPlayerDyingChanged(bool value)
+    {
+        if (!value) return;
+
+        rigidbody2D.isKinematic = false;
+        rigidbody2D.gravityScale = 0;
+        rigidbody2D.drag = 10;
+        enabled = false;
     }
 
     public void Kill()

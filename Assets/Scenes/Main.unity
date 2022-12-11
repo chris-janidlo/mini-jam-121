@@ -235,6 +235,7 @@ GameObject:
   m_Component:
   - component: {fileID: 295149668}
   - component: {fileID: 295149667}
+  - component: {fileID: 295149669}
   m_Layer: 0
   m_Name: Spawner
   m_TagString: Untagged
@@ -470,6 +471,7 @@ MonoBehaviour:
   startMirror: {fileID: 2023430527}
   killCount: {fileID: 11400000, guid: 2672a224ff12b2f4badebddb15608899, type: 2}
   playerPosition: {fileID: 11400000, guid: 6e590ef5b89bb5540870a7f450b11e6b, type: 2}
+  playerDying: {fileID: 11400000, guid: 4acd91f4ae55fd247a4a4b4a283c8b94, type: 2}
 --- !u!4 &295149668
 Transform:
   m_ObjectHideFlags: 0
@@ -485,6 +487,44 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &295149669
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 295149666}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6ab7cbc45164d19b20476265c251c2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _developerDescription: 
+  _unityEventResponse:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 295149667}
+        m_TargetAssemblyTypeName: Spawner, Assembly-CSharp
+        m_MethodName: OnPlayerDyingChanged
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  _actionResponses: []
+  _conditions: []
+  _operator: 0
+  _replayEventBufferOnRegister: 1
+  _eventReference:
+    _usage: 0
+    _event: {fileID: 11400000, guid: a3ef5ad3a37b9d748b2a8ee151f1b1c5, type: 2}
+    _eventInstancer: {fileID: 0}
+    _variable: {fileID: 0}
+    _variableInstancer: {fileID: 0}
 --- !u!1 &1738263463
 GameObject:
   m_ObjectHideFlags: 0

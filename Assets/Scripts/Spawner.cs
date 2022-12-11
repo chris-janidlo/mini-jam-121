@@ -18,6 +18,7 @@ public class Spawner : MonoBehaviour
 
     [SerializeField] private IntVariable killCount;
     [SerializeField] private Vector2Variable playerPosition;
+    [SerializeField] private BoolVariable playerDying;
 
     private int _waveIndex, _mirrorCount, _enemyCount;
 
@@ -29,6 +30,8 @@ public class Spawner : MonoBehaviour
 
     private void Update()
     {
+        if (playerDying.Value) return;
+
         if (
             _waveIndex < waves.Count - 1 &&
             killCount.Value > waves[_waveIndex + 1].killThreshold
@@ -41,6 +44,13 @@ public class Spawner : MonoBehaviour
 
         var enemySpawnChance = wave.enemySpawnChance.Evaluate(_enemyCount);
         if (RandomExtra.ChancePerSecond(enemySpawnChance)) SpawnEnemy(wave);
+    }
+
+    public void OnPlayerDyingChanged(bool value)
+    {
+        if (!value) return;
+
+        StopAllCoroutines();
     }
 
     private void SpawnMirror(WaveData wave)
