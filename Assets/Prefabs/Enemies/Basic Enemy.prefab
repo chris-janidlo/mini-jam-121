@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 5494262576355577438}
   - component: {fileID: 8010992679090681527}
   m_Layer: 0
-  m_Name: Enemy
+  m_Name: Basic Enemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -102,10 +102,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: be0ee5d055b98e04db85a51a7a79663c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  followSpeed: 5
+  onDeath:
+    m_PersistentCalls:
+      m_Calls: []
+  followSpeed: 2
   rigidbody2D: {fileID: 5494262576355577438}
   playerPosition: {fileID: 11400000, guid: 6e590ef5b89bb5540870a7f450b11e6b, type: 2}
   gameOver: {fileID: 6927615761634059493}
+  reflection: {fileID: 5494262576355577424}
+  killCount: {fileID: 11400000, guid: 2672a224ff12b2f4badebddb15608899, type: 2}
 --- !u!114 &5494262576355577424
 MonoBehaviour:
   m_ObjectHideFlags: 0

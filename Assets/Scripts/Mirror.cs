@@ -3,12 +3,15 @@ using System.Linq;
 using crass;
 using UnityEngine;
 using UnityEngine.Assertions;
+using UnityEngine.Events;
 using UnityEngine.EventSystems;
 
 [RequireComponent(typeof(BoxCollider2D))]
 public class Mirror : MonoBehaviour, IBeginDragHandler, IDragHandler, IPointerClickHandler
 {
     private static readonly List<Mirror> ActiveMirrors = new();
+
+    public UnityEvent onDeath;
 
     [SerializeField] private new BoxCollider2D collider;
     private readonly List<Collider2D> _overlappingColliders = new();
@@ -49,7 +52,7 @@ public class Mirror : MonoBehaviour, IBeginDragHandler, IDragHandler, IPointerCl
         if (_overlappingColliders.Any(r => r.CompareTag(Constants.PLAYER_TAG)))
             PlayCantCloseAnimation();
         else
-            Kill(_overlappingColliders.Select(c => c.GetComponent<Reflection>()).Where(r => r is not null));
+            Kill(_overlappingColliders.Select(c => c.GetComponent<Enemy>()).Where(e => e is not null));
     }
 
     private static Vector3 MousePosition2D(PointerEventData eventData)
@@ -59,11 +62,10 @@ public class Mirror : MonoBehaviour, IBeginDragHandler, IDragHandler, IPointerCl
         return pos;
     }
 
-    private bool FullyContains(Reflection reflection)
+    private bool FullyContains(Vector2 point, float radius)
     {
-        var min = (Vector2)Bounds.min + Vector2.one * reflection.Radius;
-        var max = (Vector2)Bounds.max - Vector2.one * reflection.Radius;
-        var point = reflection.Center;
+        var min = (Vector2)Bounds.min + Vector2.one * radius;
+        var max = (Vector2)Bounds.max - Vector2.one * radius;
 
         return
             min.x <= point.x && point.x <= max.x &&
@@ -75,17 +77,24 @@ public class Mirror : MonoBehaviour, IBeginDragHandler, IDragHandler, IPointerCl
         Debug.Log("err");
     }
 
-    private void Kill(IEnumerable<Reflection> reflectionsToKill)
+    private void Kill(IEnumerable<Enemy> enemies)
     {
-        foreach (var reflection in reflectionsToKill) reflection.Kill();
+        foreach (var enemy in enemies) enemy.Kill();
 
         Debug.Log("destroying");
         Destroy(gameObject);
+
+        onDeath.Invoke();
     }
 
     public static bool AnyContain(Reflection reflection)
     {
-        return ActiveMirrors.Any(w => w.FullyContains(reflection));
+        return AnyContain(reflection.Center, reflection.Radius);
+    }
+
+    public static bool AnyContain(Vector2 point, float radius)
+    {
+        return ActiveMirrors.Any(w => w.FullyContains(point, radius));
     }
 
     public static Mirror ClosestTo(Vector2 point)

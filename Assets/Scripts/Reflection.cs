@@ -24,10 +24,4 @@ public class Reflection : MonoBehaviour
 
         rigidbody2D.velocity += (constrainedPosition - rigidbody2D.position) / Time.deltaTime;
     }
-
-    public void Kill()
-    {
-        Debug.Log("ahh I'm dying");
-        Destroy(gameObject);
-    }
 }
