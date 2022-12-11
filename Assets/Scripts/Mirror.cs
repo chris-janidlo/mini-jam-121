@@ -75,7 +75,7 @@ public class Mirror : MonoBehaviour, IBeginDragHandler, IDragHandler, IPointerCl
         _overlappingColliders.Clear();
         collider.OverlapCollider(new ContactFilter2D { useTriggers = true }, _overlappingColliders);
 
-        if (_overlappingColliders.Any(r => r.CompareTag(Constants.PLAYER_TAG)))
+        if (!CanKill())
             PlayCantCloseAnimation();
         else
             Kill(_overlappingColliders.Select(c => c.GetComponent<Enemy>()).Where(e => e is not null));
@@ -123,6 +123,21 @@ public class Mirror : MonoBehaviour, IBeginDragHandler, IDragHandler, IPointerCl
         }
 
         StartCoroutine(DeathRoutine());
+    }
+
+    private bool CanKill()
+    {
+        foreach (var other in _overlappingColliders)
+        {
+            if (!other.CompareTag(Constants.PLAYER_TAG)) continue;
+
+            var reflection = other.GetComponent<Reflection>();
+
+            var count = ActiveMirrors.Count(m => m.FullyContains(reflection.Center, reflection.Radius));
+            return count > 1;
+        }
+
+        return true;
     }
 
     public static bool AnyContain(Reflection reflection)
