@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Collections.Generic;
 using UnityAtoms.BaseAtoms;
 using UnityEngine;
 using UnityEngine.Events;
@@ -8,6 +9,8 @@ public class Enemy : MonoBehaviour
     public UnityEvent onDeath;
 
     [SerializeField] private float followSpeed;
+    [SerializeField] private float avoidanceRadius, acceleration;
+    [SerializeField] private LayerMask avoidanceMask;
 
     [Header("References")] [SerializeField]
     private new Rigidbody2D rigidbody2D;
@@ -24,6 +27,7 @@ public class Enemy : MonoBehaviour
     [SerializeField] private Vector2Variable playerPosition;
     [SerializeField] private IntVariable killCount;
 
+    private readonly List<Collider2D> _avoidanceResults = new();
     private bool _dying;
 
     public float ReflectionRadius => reflection.Radius;
@@ -32,7 +36,39 @@ public class Enemy : MonoBehaviour
     {
         if (_dying) return;
 
-        rigidbody2D.velocity = (playerPosition.Value - rigidbody2D.position).normalized * followSpeed;
+        var go = gameObject;
+        var originalLayer = go.layer;
+        go.layer = 0;
+
+        _avoidanceResults.Clear();
+        var filter = new ContactFilter2D
+        {
+            useTriggers = true,
+            useLayerMask = true,
+            layerMask = avoidanceMask
+        };
+        Physics2D.OverlapCircle(rigidbody2D.position, avoidanceRadius, filter, _avoidanceResults);
+
+        go.layer = originalLayer;
+
+        Vector2 desiredVelocity;
+        if (_avoidanceResults.Count == 0)
+        {
+            desiredVelocity = (playerPosition.Value - rigidbody2D.position).normalized * followSpeed;
+        }
+        else
+        {
+            var avoidanceVector = Vector2.zero;
+            foreach (var col in _avoidanceResults)
+                avoidanceVector -= (Vector2)col.transform.position - rigidbody2D.position;
+            avoidanceVector /= _avoidanceResults.Count;
+
+            desiredVelocity = avoidanceVector.normalized * followSpeed;
+        }
+
+        var velocity = rigidbody2D.velocity;
+        velocity += (desiredVelocity - velocity) * (acceleration * Time.deltaTime);
+        rigidbody2D.velocity = velocity;
     }
 
     private void OnTriggerEnter2D(Collider2D other)

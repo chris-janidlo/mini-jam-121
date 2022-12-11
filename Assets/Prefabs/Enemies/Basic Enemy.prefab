@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 5494262576355577438}
   - component: {fileID: 8010992679090681527}
   - component: {fileID: 4390733709268701257}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Basic Enemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -54,6 +54,11 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   followSpeed: 2
+  avoidanceRadius: 0.5
+  acceleration: 6
+  avoidanceMask:
+    serializedVersion: 2
+    m_Bits: 64
   rigidbody2D: {fileID: 5494262576355577438}
   collider: {fileID: 8010992679090681527}
   reflection: {fileID: 5494262576355577424}
@@ -181,9 +186,19 @@ PrefabInstance:
       propertyPath: m_Name
       value: Enemy Reflection
       objectReference: {fileID: 0}
+    - target: {fileID: -9052801668487509096, guid: 620398d6f5bcda04b9ee6e13b6d0c3b4,
+        type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: -4056281664886335368, guid: 620398d6f5bcda04b9ee6e13b6d0c3b4,
         type: 3}
       propertyPath: m_SortingLayer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -4056281664886335368, guid: 620398d6f5bcda04b9ee6e13b6d0c3b4,
+        type: 3}
+      propertyPath: m_SortingOrder
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: -4056281664886335368, guid: 620398d6f5bcda04b9ee6e13b6d0c3b4,
