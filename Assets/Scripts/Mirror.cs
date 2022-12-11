@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using crass;
+using UnityAtoms.BaseAtoms;
 using UnityEngine;
 using UnityEngine.Assertions;
 using UnityEngine.Events;
@@ -16,6 +17,7 @@ public class Mirror : MonoBehaviour, IBeginDragHandler, IDragHandler, IPointerCl
     [SerializeField] private Vector2 dimensions;
     [SerializeField] private SpriteRenderer mainArea, border;
     [SerializeField] private new BoxCollider2D collider;
+    [SerializeField] private BoolVariable playerDying;
 
     private readonly List<Collider2D> _overlappingColliders = new();
     private Vector3 _dragOffset;
@@ -43,18 +45,24 @@ public class Mirror : MonoBehaviour, IBeginDragHandler, IDragHandler, IPointerCl
 
     public void OnBeginDrag(PointerEventData eventData)
     {
+        if (playerDying.Value) return;
+
         var mousePos = MousePosition2D(eventData);
         _dragOffset = transform.position - mousePos;
     }
 
     public void OnDrag(PointerEventData eventData)
     {
+        if (playerDying.Value) return;
+
         var mousePos = MousePosition2D(eventData);
         transform.position = _dragOffset + mousePos;
     }
 
     public void OnPointerClick(PointerEventData eventData)
     {
+        if (playerDying.Value) return;
+
         if (eventData.button != PointerEventData.InputButton.Right) return;
 
         _overlappingColliders.Clear();
