@@ -135,7 +135,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 10
+  floatAmplitude: 0.03125
+  floatPeriod: 10
   rigidbody2D: {fileID: 3437266702586017816}
+  cloudTransform: {fileID: 99353516048229207}
+  reflectionTransform: {fileID: 702267275044469834}
   playerPosition: {fileID: 11400000, guid: 6e590ef5b89bb5540870a7f450b11e6b, type: 2}
 --- !u!114 &3437266702586017822
 MonoBehaviour:
