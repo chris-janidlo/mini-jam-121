@@ -14,7 +14,7 @@ public class Mirror : MonoBehaviour, IBeginDragHandler, IDragHandler, IPointerCl
     public UnityEvent onDeath;
 
     [SerializeField] private Vector2 dimensions;
-    [SerializeField] private SpriteRenderer spriteRenderer;
+    [SerializeField] private SpriteRenderer mainArea, border;
     [SerializeField] private new BoxCollider2D collider;
 
     private readonly List<Collider2D> _overlappingColliders = new();
@@ -25,7 +25,10 @@ public class Mirror : MonoBehaviour, IBeginDragHandler, IDragHandler, IPointerCl
     private void Start()
     {
         collider.size = dimensions;
-        spriteRenderer.size = dimensions;
+        mainArea.transform.localScale = dimensions;
+
+        // mirror border has 3 additional pixels in each dimension - two to the left and bottom, one to the right and top
+        border.size = dimensions + 3f / 32f * Vector2.one;
     }
 
     private void OnEnable()
