@@ -1,6 +1,8 @@
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using crass;
+using DG.Tweening;
 using UnityAtoms.BaseAtoms;
 using UnityEngine;
 using UnityEngine.Assertions;
@@ -15,37 +17,42 @@ public class Mirror : MonoBehaviour, IBeginDragHandler, IDragHandler, IPointerCl
     public UnityEvent onDeath;
 
     [SerializeField] private Vector2 dimensions;
+
+    [SerializeField] private Transform childrenContainer;
+
+    [SerializeField] private Ease spawnEase, despawnEase;
+    [SerializeField] private float spawnTime, despawmTime, errTime, errOffset;
+
     [SerializeField] private SpriteRenderer mainArea, border;
     [SerializeField] private new BoxCollider2D collider;
     [SerializeField] private BoolVariable playerDying;
 
     private readonly List<Collider2D> _overlappingColliders = new();
+    private bool _alive; // false when spawning or despawning
     private Vector3 _dragOffset;
 
     public Bounds Bounds => collider.bounds;
 
-    private void Start()
+    private IEnumerator Start()
     {
         collider.size = dimensions;
         mainArea.transform.localScale = dimensions;
 
         // mirror border has 3 additional pixels in each dimension - two to the left and bottom, one to the right and top
         border.size = dimensions + 3f / 32f * Vector2.one;
-    }
 
-    private void OnEnable()
-    {
+        transform.localScale = Vector3.zero;
+        yield return transform.DOScale(Vector3.one, spawnTime)
+            .SetEase(spawnEase)
+            .WaitForCompletion();
+
         ActiveMirrors.Add(this);
-    }
-
-    private void OnDisable()
-    {
-        ActiveMirrors.Remove(this);
+        _alive = true;
     }
 
     public void OnBeginDrag(PointerEventData eventData)
     {
-        if (playerDying.Value) return;
+        if (playerDying.Value || !_alive) return;
 
         var mousePos = MousePosition2D(eventData);
         _dragOffset = transform.position - mousePos;
@@ -53,7 +60,7 @@ public class Mirror : MonoBehaviour, IBeginDragHandler, IDragHandler, IPointerCl
 
     public void OnDrag(PointerEventData eventData)
     {
-        if (playerDying.Value) return;
+        if (playerDying.Value || !_alive) return;
 
         var mousePos = MousePosition2D(eventData);
         transform.position = _dragOffset + mousePos;
@@ -61,7 +68,7 @@ public class Mirror : MonoBehaviour, IBeginDragHandler, IDragHandler, IPointerCl
 
     public void OnPointerClick(PointerEventData eventData)
     {
-        if (playerDying.Value) return;
+        if (playerDying.Value || !_alive) return;
 
         if (eventData.button != PointerEventData.InputButton.Right) return;
 
@@ -93,17 +100,29 @@ public class Mirror : MonoBehaviour, IBeginDragHandler, IDragHandler, IPointerCl
 
     private void PlayCantCloseAnimation()
     {
-        Debug.Log("err");
+        childrenContainer.localPosition = errOffset * (RandomExtra.Chance(.5f) ? 1 : -1) * Vector3.right;
+        childrenContainer.DOLocalMoveX(0, errTime)
+            .SetEase(Ease.OutElastic);
     }
 
     private void Kill(IEnumerable<Enemy> enemies)
     {
-        foreach (var enemy in enemies) enemy.Kill();
+        IEnumerator DeathRoutine()
+        {
+            ActiveMirrors.Remove(this);
+            _alive = false;
+            foreach (var enemy in enemies) enemy.Kill();
 
-        Debug.Log("destroying");
-        Destroy(gameObject);
+            yield return transform
+                .DOScale(Vector3.zero, despawmTime)
+                .SetEase(despawnEase)
+                .WaitForCompletion();
 
-        onDeath.Invoke();
+            Destroy(gameObject);
+            onDeath.Invoke();
+        }
+
+        StartCoroutine(DeathRoutine());
     }
 
     public static bool AnyContain(Reflection reflection)
