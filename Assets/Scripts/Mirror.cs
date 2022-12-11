@@ -1,14 +1,18 @@
 using System.Collections.Generic;
 using System.Linq;
+using crass;
 using UnityEngine;
 using UnityEngine.Assertions;
+using UnityEngine.EventSystems;
 
 [RequireComponent(typeof(BoxCollider2D))]
-public class Mirror : MonoBehaviour
+public class Mirror : MonoBehaviour, IBeginDragHandler, IDragHandler
 {
     private static readonly List<Mirror> ActiveMirrors = new();
 
     [SerializeField] private new BoxCollider2D collider;
+
+    private Vector3 _dragOffset;
 
     public Bounds Bounds => collider.bounds;
 
@@ -20,6 +24,32 @@ public class Mirror : MonoBehaviour
     private void OnDisable()
     {
         ActiveMirrors.Remove(this);
+    }
+
+    public void OnBeginDrag(PointerEventData eventData)
+    {
+        var mousePos = MousePosition2D(eventData);
+        _dragOffset = transform.position - mousePos;
+        Debug.Log("begin");
+        Debug.Log(mousePos);
+        Debug.Log(_dragOffset);
+    }
+
+    public void OnDrag(PointerEventData eventData)
+    {
+        var mousePos = MousePosition2D(eventData);
+        transform.position = _dragOffset + mousePos;
+        Debug.Log("drag");
+        Debug.Log(mousePos);
+        Debug.Log(_dragOffset);
+    }
+
+    private static Vector3 MousePosition2D(PointerEventData eventData)
+    {
+        var pos = CameraCache.Main.ScreenToWorldPoint(eventData.position);
+        Debug.Log(CameraCache.Main);
+        pos.z = 0;
+        return pos;
     }
 
     private bool FullyContains(Reflection reflection)
