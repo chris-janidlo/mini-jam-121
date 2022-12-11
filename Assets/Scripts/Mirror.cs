@@ -46,7 +46,7 @@ public class Mirror : MonoBehaviour, IBeginDragHandler, IDragHandler, IPointerCl
         _overlappingColliders.Clear();
         collider.OverlapCollider(new ContactFilter2D { useTriggers = true }, _overlappingColliders);
 
-        if (_overlappingColliders.Any(r => r.GetComponent<PlayerMovement>() is not null))
+        if (_overlappingColliders.Any(r => r.CompareTag(Constants.PLAYER_TAG)))
             PlayCantCloseAnimation();
         else
             Kill(_overlappingColliders.Select(c => c.GetComponent<Reflection>()).Where(r => r is not null));
