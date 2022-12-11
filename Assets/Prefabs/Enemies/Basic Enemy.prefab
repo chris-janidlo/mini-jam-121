@@ -55,7 +55,12 @@ MonoBehaviour:
       m_Calls: []
   followSpeed: 2
   rigidbody2D: {fileID: 5494262576355577438}
+  collider: {fileID: 8010992679090681527}
   reflection: {fileID: 5494262576355577424}
+  spriteRenderer: {fileID: 6905783579919279416}
+  animator: {fileID: 7753898946267617663}
+  deathAnimationStateName: Death
+  deathMaterial: {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
   playerPosition: {fileID: 11400000, guid: 6e590ef5b89bb5540870a7f450b11e6b, type: 2}
   killCount: {fileID: 11400000, guid: 2672a224ff12b2f4badebddb15608899, type: 2}
 --- !u!114 &5494262576355577424
@@ -252,6 +257,18 @@ PrefabInstance:
 --- !u!4 &1523197269299319089 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 954779726826384497, guid: 620398d6f5bcda04b9ee6e13b6d0c3b4,
+    type: 3}
+  m_PrefabInstance: {fileID: 1757376659521371456}
+  m_PrefabAsset: {fileID: 0}
+--- !u!212 &6905783579919279416 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: -4056281664886335368, guid: 620398d6f5bcda04b9ee6e13b6d0c3b4,
+    type: 3}
+  m_PrefabInstance: {fileID: 1757376659521371456}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &7753898946267617663 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 8356454125627237439, guid: 620398d6f5bcda04b9ee6e13b6d0c3b4,
     type: 3}
   m_PrefabInstance: {fileID: 1757376659521371456}
   m_PrefabAsset: {fileID: 0}
