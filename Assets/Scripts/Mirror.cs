@@ -13,12 +13,20 @@ public class Mirror : MonoBehaviour, IBeginDragHandler, IDragHandler, IPointerCl
 
     public UnityEvent onDeath;
 
+    [SerializeField] private Vector2 dimensions;
+    [SerializeField] private SpriteRenderer spriteRenderer;
     [SerializeField] private new BoxCollider2D collider;
-    private readonly List<Collider2D> _overlappingColliders = new();
 
+    private readonly List<Collider2D> _overlappingColliders = new();
     private Vector3 _dragOffset;
 
     public Bounds Bounds => collider.bounds;
+
+    private void Start()
+    {
+        collider.size = dimensions;
+        spriteRenderer.size = dimensions;
+    }
 
     private void OnEnable()
     {

@@ -41,3 +41,15 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Mirror
+    uniqueID: 3628126785
+    locked: 0
+  - name: Reflections
+    uniqueID: 1344721605
+    locked: 0
+  - name: Mirror Surface
+    uniqueID: 1623446781
+    locked: 0
+  - name: Above Mirror
+    uniqueID: 1502811405
+    locked: 0
