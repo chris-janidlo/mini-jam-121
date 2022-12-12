@@ -1,10 +1,9 @@
-using UnityAtoms.SceneMgmt;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class SceneLoader : MonoBehaviour
 {
-    public SceneField target;
+    [SerializeField] private string target;
 
     public void Load()
     {

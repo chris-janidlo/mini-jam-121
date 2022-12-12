@@ -417,11 +417,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 737a3423af03cae46b52c16b5ff98f91, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target:
-    _sceneAsset: {fileID: 102900000, guid: e91b223ce4418d745b270f86ac8a6d4c, type: 3}
-    _sceneName: Title
-    _scenePath: Assets/Scenes/Title.unity
-    _buildIndex: 0
+  target: Title
 --- !u!1 &559515735
 GameObject:
   m_ObjectHideFlags: 0
@@ -538,11 +534,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 737a3423af03cae46b52c16b5ff98f91, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target:
-    _sceneAsset: {fileID: 102900000, guid: 99c9720ab356a0642a771bea13969a05, type: 3}
-    _sceneName: Title
-    _scenePath: Assets/Scenes/Title.unity
-    _buildIndex: 0
+  target: Main
 --- !u!1 &813480943
 GameObject:
   m_ObjectHideFlags: 0
