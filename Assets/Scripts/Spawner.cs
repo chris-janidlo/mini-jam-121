@@ -24,6 +24,7 @@ public class Spawner : MonoBehaviour
 
     private void Start()
     {
+        killCount.Value = 0;
         _mirrorCount = 1;
         startMirror.onDeath.AddListener(() => _mirrorCount--);
     }

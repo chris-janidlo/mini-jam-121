@@ -19,9 +19,11 @@ public class Player : MonoBehaviour
     [SerializeField] private float gameOverSceneLoadDelay;
     [SerializeField] private SceneField gameOver;
     [SerializeField] private BoolVariable playerDying;
+    [SerializeField] private FloatVariable timeLived;
 
     private Vector2 _cloudLocalStartPosition, _reflectionLocalStartPosition;
     private Vector2 _input;
+    private float _lifetime;
 
     private void Start()
     {
@@ -35,6 +37,8 @@ public class Player : MonoBehaviour
 
     private void Update()
     {
+        _lifetime += Time.deltaTime;
+
         ReadInput();
         Float();
     }
@@ -53,6 +57,7 @@ public class Player : MonoBehaviour
         IEnumerator DeathRoutine()
         {
             playerDying.Value = true;
+            timeLived.Value = _lifetime;
             rigidbody2D.velocity = Vector2.zero;
 
             cloudAnimator.Play(deathAnimationStateName);

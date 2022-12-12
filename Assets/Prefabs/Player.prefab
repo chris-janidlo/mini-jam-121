@@ -154,6 +154,7 @@ MonoBehaviour:
     _scenePath: Assets/Scenes/Game Over.unity
     _buildIndex: 2
   playerDying: {fileID: 11400000, guid: 4acd91f4ae55fd247a4a4b4a283c8b94, type: 2}
+  timeLived: {fileID: 11400000, guid: 8fe66161d4498c1478b2857a26e64f04, type: 2}
 --- !u!114 &3437266702586017822
 MonoBehaviour:
   m_ObjectHideFlags: 0
