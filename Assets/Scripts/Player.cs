@@ -7,7 +7,7 @@ using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour
 {
-    [SerializeField] private float speed;
+    [SerializeField] private float acceleration, maxSpeed, fullStopSquaredSpeed;
     [SerializeField] private float floatAmplitude, floatPeriod;
 
     [SerializeField] private new Rigidbody2D rigidbody2D;
@@ -43,7 +43,8 @@ public class Player : MonoBehaviour
     {
         if (playerDying.Value) return;
 
-        rigidbody2D.velocity = _input * speed;
+        Move();
+
         playerPosition.Value = rigidbody2D.position;
     }
 
@@ -52,6 +53,7 @@ public class Player : MonoBehaviour
         IEnumerator DeathRoutine()
         {
             playerDying.Value = true;
+            rigidbody2D.velocity = Vector2.zero;
 
             cloudAnimator.Play(deathAnimationStateName);
             reflectionAnimator.Play(deathAnimationStateName);
@@ -75,9 +77,26 @@ public class Player : MonoBehaviour
 
     private void Float()
     {
+        if (_input != Vector2.zero) return;
+
         var floatOffset = floatAmplitude * Mathf.Sin(2f * Mathf.PI / floatPeriod * Time.time);
 
         cloudTransform.localPosition = _cloudLocalStartPosition + floatOffset * Vector2.up;
         reflectionTransform.localPosition = _reflectionLocalStartPosition + floatOffset * Vector2.up;
+    }
+
+    private void Move()
+    {
+        var velocity = rigidbody2D.velocity;
+
+        if (_input != Vector2.zero)
+            velocity += acceleration * Time.deltaTime * _input;
+        else if (velocity.SqrMagnitude() <= fullStopSquaredSpeed)
+            velocity = Vector2.zero;
+        else
+            velocity -= acceleration * Time.deltaTime * velocity.normalized;
+
+        velocity = Vector2.ClampMagnitude(velocity, maxSpeed);
+        rigidbody2D.velocity = velocity;
     }
 }
