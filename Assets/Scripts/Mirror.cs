@@ -133,7 +133,7 @@ public class Mirror : MonoBehaviour, IBeginDragHandler, IDragHandler, IPointerCl
 
             var reflection = other.GetComponent<Reflection>();
 
-            var count = ActiveMirrors.Count(m => m.FullyContains(reflection.Center, reflection.Radius));
+            var count = ActiveMirrors.Count(m => m.FullyContains(reflection.Center, -reflection.Radius));
             return count > 1;
         }
 
