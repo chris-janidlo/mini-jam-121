@@ -167,4 +167,9 @@ public class Mirror : MonoBehaviour, IBeginDragHandler, IDragHandler, IPointerCl
         Assert.IsNotNull(closestMirror);
         return closestMirror;
     }
+
+    public static void ClearActiveMirrors()
+    {
+        ActiveMirrors.Clear();
+    }
 }

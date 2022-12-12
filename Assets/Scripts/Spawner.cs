@@ -51,6 +51,7 @@ public class Spawner : MonoBehaviour
         if (!value) return;
 
         StopAllCoroutines();
+        Mirror.ClearActiveMirrors();
     }
 
     private void SpawnMirror(WaveData wave)
