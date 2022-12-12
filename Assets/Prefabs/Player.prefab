@@ -135,7 +135,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   acceleration: 25
-  deceleration: 25
   maxSpeed: 5
   fullStopSquaredSpeed: 0.5
   floatAmplitude: 0.03125
@@ -155,7 +154,6 @@ MonoBehaviour:
     _scenePath: Assets/Scenes/Game Over.unity
     _buildIndex: 2
   playerDying: {fileID: 11400000, guid: 4acd91f4ae55fd247a4a4b4a283c8b94, type: 2}
-  _input: {x: 0, y: 0}
 --- !u!114 &3437266702586017822
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -168,7 +166,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 36b8a3acf876cf34bbf2892531805cb3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  constraintRadius: 0.25
+  constraintRadius: 0.03125
   rigidbody2D: {fileID: 3437266702586017816}
 --- !u!50 &3437266702586017816
 Rigidbody2D:
