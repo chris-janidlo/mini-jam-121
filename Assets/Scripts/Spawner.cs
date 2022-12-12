@@ -24,6 +24,8 @@ public class Spawner : MonoBehaviour
 
     private void Start()
     {
+        Mirror.ClearActiveMirrors();
+
         killCount.Value = 0;
         _mirrorCount = 1;
         startMirror.onDeath.AddListener(() => _mirrorCount--);
@@ -52,7 +54,6 @@ public class Spawner : MonoBehaviour
         if (!value) return;
 
         StopAllCoroutines();
-        Mirror.ClearActiveMirrors();
     }
 
     private void SpawnMirror(WaveData wave)

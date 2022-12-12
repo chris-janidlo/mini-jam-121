@@ -10,7 +10,7 @@ PrefabInstance:
     - target: {fileID: 3070174080478461161, guid: 16e3a6b7161df9447b35d4c23daf2aff,
         type: 3}
       propertyPath: m_Name
-      value: Mirror 3x3
+      value: Mirror 2x9
       objectReference: {fileID: 0}
     - target: {fileID: 3070174080478461204, guid: 16e3a6b7161df9447b35d4c23daf2aff,
         type: 3}
@@ -75,7 +75,7 @@ PrefabInstance:
     - target: {fileID: 3070174080478461206, guid: 16e3a6b7161df9447b35d4c23daf2aff,
         type: 3}
       propertyPath: dimensions.y
-      value: 3
+      value: 9
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 16e3a6b7161df9447b35d4c23daf2aff, type: 3}

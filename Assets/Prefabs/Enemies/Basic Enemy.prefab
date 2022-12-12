@@ -53,7 +53,7 @@ MonoBehaviour:
   onDeath:
     m_PersistentCalls:
       m_Calls: []
-  followSpeed: 2
+  followSpeed: 1.5
   avoidanceRadius: 0.5
   acceleration: 6
   avoidanceMask:
@@ -80,7 +80,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 36b8a3acf876cf34bbf2892531805cb3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  constraintRadius: 0.25
+  constraintRadius: 0
   rigidbody2D: {fileID: 5494262576355577438}
 --- !u!114 &6927615761634059493
 MonoBehaviour:

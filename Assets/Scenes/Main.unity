@@ -328,27 +328,45 @@ MonoBehaviour:
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: 5
-        inSlope: 4.285714
-        outSlope: 4.285714
+        value: 2
+        inSlope: 7.6864805
+        outSlope: 7.6864805
         tangentMode: 34
         weightedMode: 0
         inWeight: 0
         outWeight: 0.33333334
       - serializedVersion: 3
-        time: 0.7
-        value: 8
-        inSlope: 5.4761906
-        outSlope: 5.4761906
-        tangentMode: 34
+        time: 0.20103621
+        value: 3.545261
+        inSlope: 0.55099416
+        outSlope: 0.55099416
+        tangentMode: 0
         weightedMode: 0
         inWeight: 0.33333334
-        outWeight: 0.33333334
+        outWeight: 0.081095584
+      - serializedVersion: 3
+        time: 0.35171384
+        value: 5.0464215
+        inSlope: 0.4143039
+        outSlope: 0.4143039
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.078245066
+      - serializedVersion: 3
+        time: 0.70654404
+        value: 5.070208
+        inSlope: 0.26048696
+        outSlope: 0.26048696
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.124454424
       - serializedVersion: 3
         time: 1
         value: 10
-        inSlope: 6.6666665
-        outSlope: 6.6666665
+        inSlope: 16.799086
+        outSlope: 16.799086
         tangentMode: 34
         weightedMode: 0
         inWeight: 0.33333334
@@ -364,31 +382,39 @@ MonoBehaviour:
       LocalSeed: 0
     mirrorPrefabs:
       Items:
-      - {fileID: 1978969554552361719, guid: da7c4c11dea3f5549a790c49a767ed9e, type: 3}
-      - {fileID: 1978969554552361719, guid: 0a1e2cacd5d2e0b4799187bf5630f5f5, type: 3}
       - {fileID: 1978969554552361719, guid: 5fcfcbcf0031d8c4fa692ec0b5972ec8, type: 3}
+      - {fileID: 1978969554552361719, guid: 0a1e2cacd5d2e0b4799187bf5630f5f5, type: 3}
       - {fileID: 1978969554552361719, guid: 2f4b72f7dfd943d4fb5f70e80889e8aa, type: 3}
-      AvoidRepeats: 0
+      AvoidRepeats: 1
       Type: 0
       LocalSeed: 0
-  - killThreshold: 30
+  - killThreshold: 10
     mirrorSpawnChance:
       serializedVersion: 2
       m_Curve:
       - serializedVersion: 3
         time: 0
         value: 1
-        inSlope: -0.2
-        outSlope: -0.2
+        inSlope: -0.27858052
+        outSlope: -0.27858052
         tangentMode: 34
         weightedMode: 0
         inWeight: 0
         outWeight: 0.33333334
       - serializedVersion: 3
-        time: 5
-        value: 0
+        time: 2.5247583
+        value: 0.2966515
         inSlope: -0.2
         outSlope: -0.2
+        tangentMode: 136
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.33333334
+      - serializedVersion: 3
+        time: 5
+        value: 0
+        inSlope: -0.11984749
+        outSlope: -0.11984749
         tangentMode: 34
         weightedMode: 0
         inWeight: 0.33333334
@@ -402,21 +428,30 @@ MonoBehaviour:
       - serializedVersion: 3
         time: 0
         value: 1
-        inSlope: -0.06666667
-        outSlope: -0.06666667
+        inSlope: -0.4
+        outSlope: -0.4
         tangentMode: 34
         weightedMode: 0
-        inWeight: 0
+        inWeight: 0.33333334
+        outWeight: 0.33333334
+      - serializedVersion: 3
+        time: 2
+        value: 0.2
+        inSlope: -0.053333335
+        outSlope: -0.053333335
+        tangentMode: 136
+        weightedMode: 0
+        inWeight: 0.33333334
         outWeight: 0.33333334
       - serializedVersion: 3
         time: 15
         value: 0
-        inSlope: -0.06666667
-        outSlope: -0.06666667
+        inSlope: -0.015384615
+        outSlope: -0.015384615
         tangentMode: 34
         weightedMode: 0
         inWeight: 0.33333334
-        outWeight: 0
+        outWeight: 0.33333334
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 0
@@ -425,27 +460,45 @@ MonoBehaviour:
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: 0
-        inSlope: 7.142857
-        outSlope: 7.142857
+        value: 2
+        inSlope: 7.6864805
+        outSlope: 7.6864805
         tangentMode: 34
         weightedMode: 0
         inWeight: 0
         outWeight: 0.33333334
       - serializedVersion: 3
-        time: 0.7
-        value: 5
-        inSlope: 0
-        outSlope: 0
+        time: 0.20103621
+        value: 3.545261
+        inSlope: 0.55099416
+        outSlope: 0.55099416
         tangentMode: 0
         weightedMode: 0
         inWeight: 0.33333334
-        outWeight: 0.33333334
+        outWeight: 0.081095584
+      - serializedVersion: 3
+        time: 0.35171384
+        value: 5.0464215
+        inSlope: 0.4143039
+        outSlope: 0.4143039
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.078245066
+      - serializedVersion: 3
+        time: 0.70654404
+        value: 5.070208
+        inSlope: 0.26048696
+        outSlope: 0.26048696
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.124454424
       - serializedVersion: 3
         time: 1
-        value: 3
-        inSlope: -6.6666665
-        outSlope: -6.6666665
+        value: 10
+        inSlope: 16.799086
+        outSlope: 16.799086
         tangentMode: 34
         weightedMode: 0
         inWeight: 0.33333334
@@ -461,11 +514,12 @@ MonoBehaviour:
       LocalSeed: 0
     mirrorPrefabs:
       Items:
-      - {fileID: 1978969554552361719, guid: f41bd3f1490089749a44f859c613db97, type: 3}
-      - {fileID: 1978969554552361719, guid: da7c4c11dea3f5549a790c49a767ed9e, type: 3}
+      - {fileID: 1978969554552361719, guid: 5fcfcbcf0031d8c4fa692ec0b5972ec8, type: 3}
       - {fileID: 1978969554552361719, guid: 0a1e2cacd5d2e0b4799187bf5630f5f5, type: 3}
+      - {fileID: 1978969554552361719, guid: 2f4b72f7dfd943d4fb5f70e80889e8aa, type: 3}
+      - {fileID: 1978969554552361719, guid: f41bd3f1490089749a44f859c613db97, type: 3}
       - {fileID: 1978969554552361719, guid: 8c71c83f06189d3409c78db2b1373146, type: 3}
-      AvoidRepeats: 0
+      AvoidRepeats: 1
       Type: 0
       LocalSeed: 0
   startMirror: {fileID: 2023430527}
