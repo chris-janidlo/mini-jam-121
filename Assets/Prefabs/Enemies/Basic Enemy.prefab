@@ -59,6 +59,8 @@ MonoBehaviour:
   avoidanceMask:
     serializedVersion: 2
     m_Bits: 64
+  spawnTime: 0.5
+  spawnEase: 24
   rigidbody2D: {fileID: 5494262576355577438}
   collider: {fileID: 8010992679090681527}
   reflection: {fileID: 5494262576355577424}

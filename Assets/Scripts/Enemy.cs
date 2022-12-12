@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using DG.Tweening;
 using UnityAtoms.BaseAtoms;
 using UnityEngine;
 using UnityEngine.Events;
@@ -11,6 +12,9 @@ public class Enemy : MonoBehaviour
     [SerializeField] private float followSpeed;
     [SerializeField] private float avoidanceRadius, acceleration;
     [SerializeField] private LayerMask avoidanceMask;
+
+    [SerializeField] private float spawnTime;
+    [SerializeField] private Ease spawnEase;
 
     [Header("References")] [SerializeField]
     private new Rigidbody2D rigidbody2D;
@@ -28,13 +32,23 @@ public class Enemy : MonoBehaviour
     [SerializeField] private IntVariable killCount;
 
     private readonly List<Collider2D> _avoidanceResults = new();
-    private bool _dying;
+    private bool _dying, _spawning;
 
     public float ReflectionRadius => reflection.Radius;
 
+    private IEnumerator Start()
+    {
+        _spawning = true;
+        transform.localScale = Vector3.zero;
+        yield return transform.DOScale(Vector3.one, spawnTime)
+            .SetEase(spawnEase)
+            .WaitForCompletion();
+        _spawning = false;
+    }
+
     private void FixedUpdate()
     {
-        if (_dying) return;
+        if (_dying || _spawning) return;
 
         var go = gameObject;
         var originalLayer = go.layer;
@@ -73,6 +87,8 @@ public class Enemy : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
+        if (_dying || _spawning) return;
+
         if (!other.CompareTag(Constants.PLAYER_TAG)) return;
 
         other.GetComponent<Player>()!.Kill();
