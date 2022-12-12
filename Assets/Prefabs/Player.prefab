@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3437266701696586130}
   - component: {fileID: 3437266701696586131}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Shadow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -97,7 +97,7 @@ GameObject:
   - component: {fileID: 3437266702586017822}
   - component: {fileID: 3437266702586017816}
   - component: {fileID: 3437266702586017817}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -288,6 +288,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player Cloud Reflection
       objectReference: {fileID: 0}
+    - target: {fileID: 6747466277674846698, guid: 4eca05cdfeabfe34e9ee47d589662617,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 6437531721940673314, guid: 4eca05cdfeabfe34e9ee47d589662617,
     type: 3}
@@ -314,6 +319,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Player Cloud
+      objectReference: {fileID: 0}
+    - target: {fileID: -3692167356185806289, guid: c6ca9db4a643bdf43a209596f5e3ded0,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 3374153407926242179, guid: c6ca9db4a643bdf43a209596f5e3ded0,
         type: 3}
